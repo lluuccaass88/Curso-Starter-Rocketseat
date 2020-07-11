@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="App">
+        <button onclick="criaBoxVermelha()" >Me aperte</button>
+        <ul id="lista">
+
+        </ul>
+        <label for="">Digite um nome</label>
+        <input type="text" id="texto">
+        <button onclick="addLista()">Adicionar a lista</button>
+    </div>
+
+    <script>
+        /*Crie um botão que ao ser clicado cria um novo elemento em tela com a forma de um quadrado
+        vermelho com 100px de altura e largura. Sempre que o botão for clicado um novo quadrado deve
+        aparecer na tela.*/
+        //var cont = 0
+        function criaBoxVermelha(){
+
+            var box = document.createElement('div');
+            box.setAttribute('class', 'box')
+            box.setAttribute('onmouseover', 'mudaCor(event)')
+
+           var containerElement = document.querySelector('#App')
+           
+
+           containerElement.appendChild(box);
+
+            box.style.width = 100 + "px";
+            box.style.height = 100 + "px";
+            box.style.marginBottom = 10 + "px";
+            box.style.backgroundColor = 'red';
+            
+            console.log(box)
+        }
+        
+        
+       /* Utilizando o resultado do primeiro desafio, toda vez que o usuário passar o mouse por cima de
+        algum quadrado troque sua cor para uma cor aleatória gerada pela função abaixo:*/
+
+        function getRandomColor() {
+            var letters = "0123456789ABCDEF";
+            var color = "#";
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+         
+        
+        function mudaCor(event){
+            var newColor = getRandomColor();
+            event.target.style.backgroundColor = newColor;
+        }
+
+        //Adicione os itens do vetor na lista ul
+        var nomes = ["Diego", "Gabriel", "Lucas"];
+
+        function ciraItem(nome){
+        var item = document.createElement('li');
+        item.setAttribute('class', 'itens');
+        var textItem = document.createTextNode(nome)
+        item.appendChild(textItem);
+        var containerElement = document.querySelector('#lista')
+        containerElement.appendChild(item);
+        }
+
+        ciraItem(nomes[0])
+        ciraItem(nomes[1])
+        ciraItem(nomes[2])
+
+        /*Seguindo o resultado do exercício anterior adicione um input em tela e um botão
+        Ao clicar no botão, a função adicionar() deve ser disparada adicionando um novo item a lista de
+        nomes baseado no nome preenchido no input e renderizando o novo item em tela juntos aos
+        demais itens anteriores. Além disso, o conteúdo do input deve ser apagado após o clique.*/
+    
+        function addLista(){
+            var conteudo = document.getElementById('texto').value
+            ciraItem(conteudo)
+        }
+    
+    </script>
+</body>
+</html>

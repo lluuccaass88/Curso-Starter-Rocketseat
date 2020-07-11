@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        //Retrona conteudo do objeto
+        function retornaOBJ(obj){
+            console.log("O usuario mora em" + obj.cidade + " / " + obj.uf + ", no bairro " + obj.bairro + ", na rua " + obj.rua + " com n° " + obj.numero + ".");
+        }
+
+        var endereco = {
+            rua: "Rua dos pinheiros",
+            numero: 1293,
+            bairro: "centro",
+            cidade: "São Paulo",
+            uf: "Sp"
+        }   
+        
+        retornaOBJ(endereco);
+
+        //Numeros pares no intervalo de x e y
+        function numerosPares(x , y){
+            for(var i = x; i <= y; i++){
+                if(i%2 == 0){
+                    console.log(i)
+                }
+            }
+        }
+
+        numerosPares(2, 6)
+    
+        //Escreva uma função que verifique se o vetor de habilidades passado possui a habilidade "Javascript"e retorna um booleano true/false caso exista ou não.
+        function temHabilidade(skills) {
+            for(i=0; i<skills.length; i++){
+                if("Javascript" === skills[i]){
+                    console.log("true")
+                }else{
+                    console.log("false")
+                }
+            }
+        }
+        var skills = ["Javascript", "ReactJS", "React Native"];
+        temHabilidade(skills);
+
+        //Escreva uma função que dado um total de anos de estudo retorna o quão experiente o usuário é:
+        function experiencia(anos){
+            if(anos >= 0 && anos <= 1){
+                console.log("Iniciante")
+            }else if(anos >= 1 && anos <= 3){
+                console.log("Intermediario")
+            }else if(anos >= 3 && anos <= 6){
+                console.log("Avançado")
+            }else if(anos >= 7){
+                console.log("Jedi Master")
+            }
+        }
+
+        var anosEstudados = 8;
+        experiencia(anosEstudados)
+
+        
+        //Dado os seguintes valores escreva uma função que retorne o resultado
+        var usuarios = [
+            {
+                nome: "Diego",
+                habilidades: ["Javascript", "ReactJS", "Redux"]
+            },
+            {
+                nome: "Gabriel",
+                habilidades: ["VueJS", "Ruby on Rails", "Elixir"]
+            }
+        ];
+        
+        function retornaUsuarios(usuarios){
+            for(var i = 0; i<usuarios.length; i++){
+                console.log("O "+ usuarios[i].nome + " possui hablidade: " + usuarios[i].habilidades)
+            }
+            
+        }    
+
+        retornaUsuarios(usuarios)
+    </script>
+</body>
+</html>
