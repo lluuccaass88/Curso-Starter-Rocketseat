@@ -5,7 +5,7 @@ class App{
         this.repositories = [];
 
         this.formEl = document.getElementById('repo-form')
-        this.inputEl = document.querySelector('input[name=repository]')
+        this.inputEl = document.querySelector('input[name=repositorie]')
         this.listEl = document.getElementById('repo-list')
         
         this.registerHandlers()
@@ -20,21 +20,35 @@ class App{
     async addRepoditory(event){
         event.preventDefault();
         
+
         const repoInput = this.inputEl.value;
+        
+
         if(repoInput.length === 0){
             alert('Digite o nome de um repositório valido')
             return;
         }else{
             const response = await api.get(`/repos/${repoInput}`)
+            console.log("Response: ")
             console.log(response)
-        }
+            const {name, description, html_url, owner:{avatar_url}} = response.data;
+        
+        console.log("nome: ")
+        console.log(name) 
 
         this.repositories.push({
-            name: 'rocketseat.com.br',
-            description: 'Tire a sua idéia do papel e de vida a sua startup',
-            avatar_url: 'https://avatars0.githubusercontent.com/u/28929274?v=4',
-            html_url: 'http://github.com/rocketseat/rocketseat.com.br',
+            name,
+            description,
+            avatar_url,
+            html_url,
         })
+        
+        }//===================feche o else
+        console.log("oi")
+
+        console.log("Repositorio: ")
+        console.log(this.repositories)
+
         this.render()
     }
 
@@ -42,6 +56,8 @@ class App{
         this.listEl.innerHTML = '';
 
         this.repositories.forEach(repo => {
+            console.log(repo)
+
             let imgEl = document.createElement('img');
             imgEl.setAttribute('src', repo.avatar_url)
 
@@ -68,3 +84,10 @@ class App{
 }
 
 new App()
+
+
+/*
+florinpop17/app-ideas
+lluuccaass88/borderRadius-Generation
+diego3g/node-microservices-ddd
+*/
