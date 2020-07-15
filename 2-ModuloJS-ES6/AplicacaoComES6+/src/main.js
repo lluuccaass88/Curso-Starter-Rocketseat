@@ -17,6 +17,17 @@ class App{
         }
     }
 
+    setLoading(loading = true){
+        if(loading === true){
+            let loadingEl = document.createElement('span')
+            loadingEl.appendChild(document.createTextNode('Carregando'))
+            loadingEl.setAttribute('id', 'loading')
+            this.formEl.appendChild(loadingEl)
+        }else{
+            document.getElementById('loading').remove();
+        }
+    }
+
     async addRepoditory(event){
         event.preventDefault();
         
@@ -27,29 +38,27 @@ class App{
         if(repoInput.length === 0){
             alert('Digite o nome de um repositório valido')
             return;
-        }else{
+        }
+
+        this.setLoading();
+
+        try{
             const response = await api.get(`/repos/${repoInput}`)
-            console.log("Response: ")
-            console.log(response)
             const {name, description, html_url, owner:{avatar_url}} = response.data;
-        
-        console.log("nome: ")
-        console.log(name) 
 
-        this.repositories.push({
-            name,
-            description,
-            avatar_url,
-            html_url,
-        })
-        
-        }//===================feche o else
-        console.log("oi")
+            this.repositories.push({
+                name,
+                description,
+                avatar_url,
+                html_url,
+            })
+            this.render()
+        }catch(err){
+            alert("O repositorio não existe")
+        }   
 
-        console.log("Repositorio: ")
-        console.log(this.repositories)
+        this.setLoading(false)
 
-        this.render()
     }
 
     render(){
