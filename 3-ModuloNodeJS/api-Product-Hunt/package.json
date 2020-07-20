@@ -12,6 +12,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "mongoose": "^5.9.24",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "require-dir": "^1.2.0"
   }
 }
