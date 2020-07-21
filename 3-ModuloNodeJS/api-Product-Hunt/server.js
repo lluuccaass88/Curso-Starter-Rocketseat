@@ -4,35 +4,26 @@ const requireDir = require('require-dir')
 
 requireDir('./src/models') //Fazendo require em tds arquivos do model  cm o require dir
 
-const Product = mongoose.model('Product')
 
 //Iniciando o app
 const app = express();
 
 //iniciando o DB
-const options = { //colocando tds opções de configurações do mongo neste array para n precisaar escrever td
+const options = { //Array que contém todas as opções de configuração 
     keepAlive: 1,
     useUnifiedTopology: true,
     useNewUrlParser: true,
   };
 
-mongoose.connect("mongodb+srv://lucasp_alves8:Internacional1909@cluster0-d8as2.mongodb.net/Starter1?retryWrites=true&w=majority", options).then(()=>{
+mongoose.connect("mongodb+srv://lucasp_alves8:Internacional1909@cluster0-d8as2.mongodb.net/starter?retryWrites=true&w=majority", options).then(()=>{
     console.log("Conectado com sucesso")
 }).catch((err) => {
     console.log("Não conectado " + err)
 })
 
+//Configurando o Banco de dados MongoDb
 
 //Rotas
-app.get("/", (req, res) => {
-    Product.create({
-        title: 'Reactive Native',
-        description: 'Built native apps with React',
-        url: 'http://github.com/facebook/react-native'
-    })
-
-
-    return res.send("Hello Mundo")
-})
+app.use('/', require('./src/routes'))
 
 app.listen(3008)
