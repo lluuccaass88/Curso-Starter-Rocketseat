@@ -1,11 +1,17 @@
 import React from 'react';
-import Header from './components/Header/index'
+import Routes from './routes'
 import './styles.css'
+
+import Header from './components/Header/index'
+
+import Main from './pages/main/index'
+
 
 const App = () =>{
   return (
     <div className="App">
       <Header />
+      <Routes />
     </div>
   );
 }
